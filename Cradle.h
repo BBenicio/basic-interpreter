@@ -9,6 +9,10 @@
 #include <fstream>
 #include <vector>
 
+#ifndef LINUX
+#include <windows.h>
+#endif
+
 void clearConsole() {
 #ifdef LINUX
     std::cout << "\033[2J\033[1;1H";
