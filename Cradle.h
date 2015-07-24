@@ -9,15 +9,19 @@
 #include <fstream>
 #include <vector>
 
+void clearConsole() {
 #ifdef LINUX
-inline void clearConsole() {
-    system("clear");
-}
+    std::cout << "\033[2J\033[1;1H";
 #else
-inline void clearConsole() {
-    system("cls");
-}
+    HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD coord = {0, 0};
+    DWORD count;
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    GetConsoleScreenBufferInfo(hStdOut, &csbi);
+    FillConsoleOutputCharacter(hStdOut, ' ', csbi.dwSize.X * csbi.dwSize.Y, coord, &count);
+    SetConsoleCursorPosition(hStdOut, coord);
 #endif
+}
 
 inline void pause() {
     if (getchar() == '\n') getchar();
