@@ -1,0 +1,37 @@
+call menu
+call calc
+
+goto 4
+
+procedure calc
+	if (option = 1) result = num1 + num2
+	else if (option = 2) result = num1 - num2
+	else if (option = 3) result = num1 * num2
+	else if (option = 4) if (num2 ! 0) result = num1 / num2
+	else if (option = 4) if (num2 = 0) print "Divisao por Zero\n\n"
+	else print "Escolha invalida\n\n"
+
+	print "Resultado: "
+	put result
+	pause
+	return
+
+procedure menu
+	clear
+	print "Calculadora Simples\n"
+	print "Escolha uma operação\n"
+	print "[1] Adição\n"
+	print "[2] Subtração\n"
+	print "[3] Multiplicação\n"
+	print "[4] Divisão\n"
+	print "[0] Sair\n"
+	get option
+	if (option = 0) exit
+	else if (option < 0) return
+	else if (option > 4) return
+
+	print "Num1: "
+	get num1
+	print "Num2: "
+	get num2
+	return
